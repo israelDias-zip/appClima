@@ -19,14 +19,14 @@ export class Api {
 export class ApiService {
 
   constructor(private http: HttpClient) { }
-
+// Função principal para obter o clima
   getWeather(location: string): Observable<WeatherResponse> {
-    if (isValidCEP(location)) {
+    if (isValidCEP(location)) { // Se for um CEP válido
       return this.getCityFromCEP(location).pipe(
         switchMap(cityName => this.getCoordsFromCity(cityName)),
         switchMap(coords => this.getWeatherFromCoords(coords.latitude, coords.longitude))
       );
-    } else {
+    } else { // Se for um nome de cidade
       return this.getCoordsFromCity(location).pipe(
         switchMap(coords => this.getWeatherFromCoords(coords.latitude, coords.longitude))
       );
@@ -34,12 +34,14 @@ export class ApiService {
   }
 
   private getCityFromCEP(cep: string): Observable<string> {
+    // Consulta a API do ViaCEP para obter o nome da cidade
     return this.http.get<CEPResponse>(`https://viacep.com.br/ws/${cep}/json/`).pipe(
       map(response => response.cidade)
     );
   }
 
   private getCoordsFromCity(city: string): Observable<GeoLocationResponse> {
+    // Consulta a API de geocodificação para obter latitude e longitude
     return this.http.get<any>(`https://geo/geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`).pipe(
       map(response => {
         if (!response.results || response.results.length === 0) {
@@ -53,6 +55,7 @@ export class ApiService {
   }
 
   private getWeatherFromCoords(lat: number, lon: number): Observable<WeatherResponse> {
+    // Consulta a API de clima para obter o clima atual
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
     return this.http.get<WeatherResponse>(url);
   }
