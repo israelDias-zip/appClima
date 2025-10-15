@@ -1,20 +1,39 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Blank
-    </ion-title>
+    <ion-title> App Clima </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding" [fullscreen]="true">
+  <ion-item>
+    <ion-input label="Digite o CEP ou a Cidade" labelPlacement="floating" [(ngModel)]="locationInput"
+      placeholder="Ex: 74000000 ou Goiânia"></ion-input>
+  </ion-item>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <ion-button expand="block" (click)="searchWeather()" [disabled]="!locationInput">
+    Buscar
+    <ion-item name="search" slot="end"></ion-item>
+  </ion-button>
+
+  <div *ngIf="isLoading" class="ion-text-center ion-padding">
+    <ion-spinner name="crescent"></ion-spinner>
+    <p>Carregando...</p>
   </div>
+
+  <div *ngIf="errorMensage" class="ion-text-center ion-padding">
+    <ion-text color="danger">{{errorMensage}}</ion-text>
+  </div>
+
+  <ion-card *ngIf="weatherData">
+    <ion-card-header>
+      <ion-card-title>{{displayLocation}}</ion-card-title>
+      <ion-card-subtitle>Atualizado em: {{ weatherData.current.horario_medicao | date:'dd/MM/yyyy HH:mm' }}
+      </ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <p> Temperatura: {{ weatherData.current.temperatura }} °C</p>
+      <p> Umidade: {{weatherData.current.umidade_reltiva }} %</p>
+      <p> Velocidade do Vento: {{ weatherData.current.velocidade_vento }} m/s</p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
