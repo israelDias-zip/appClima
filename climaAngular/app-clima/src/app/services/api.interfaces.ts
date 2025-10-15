@@ -10,12 +10,12 @@ export interface GeoLocationResponse {
 }
 
 export interface WeatherResponse {
-    current: {
+    current_weather: {
         temperatura: number; // temperatura em Celsius
         umidade_relativa : number; // umidade relativa 
         codigo_clima: number; // código do clima
         velocidade_vento: number; // velocidade do vento em m/s
-        horario_medicao: string
+        horario_medicao: string;
 
     }
  }
