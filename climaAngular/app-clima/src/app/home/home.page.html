@@ -1,10 +1,10 @@
-<ion-header> <!--Cabeçalho da página--> 
+<ion-header [translucent]="true"> <!--Cabeçalho da página--> 
   <ion-toolbar>
     <ion-title> App Clima </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" > <!--Conteúdo da página-->
+<ion-content class="ion-padding" [fullscreen]="true"> <!--Conteúdo da página-->
   <ion-item>
     <ion-input label="Digite o CEP ou a Cidade" labelPlacement="floating" [(ngModel)]="locationInput"
       placeholder="Ex: 74000000 ou Goiânia"></ion-input>
@@ -31,9 +31,9 @@
       </ion-card-subtitle>
     </ion-card-header>
     <ion-card-content>
-      <p> Temperatura: {{ weatherData.current.temperatura }} °C</p>
-      <p> Umidade: {{weatherData.current.umidade_relativa }} %</p>
-      <p> Velocidade do Vento: {{ weatherData.current.velocidade_vento }} m/s</p>
+      <p> Temperatura: {{ weatherData.current.temperature_2m }} °C</p>
+      <p> Umidade: {{weatherData.current.relative_humidity_2m }} %</p>
+      <p> Velocidade do Vento: {{ weatherData.current.wind_speed_10m }} m/s</p>
     </ion-card-content>
   </ion-card>
 </ion-content>

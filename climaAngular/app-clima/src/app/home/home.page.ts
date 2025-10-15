@@ -15,7 +15,7 @@ import { finalize } from 'rxjs/operators';
 export class HomePage {
   locationInput: string = '';
   isLoading: boolean = false;
-  errorMensage: string = '';
+  errorMensage: any = null;
   weatherData: any = null;
   displayLocation: string = '';
 
@@ -23,7 +23,7 @@ export class HomePage {
 
   searchWeather() {
     this.isLoading = true;
-    this.errorMensage = '';
+    this.errorMensage = null;
     this.weatherData = null;
     this.displayLocation = this.locationInput;
 
@@ -34,7 +34,7 @@ export class HomePage {
         this.weatherData = data;
       },
       error: (err) => {
-        this.errorMensage = 'Erro ao buscar o clima. Verifique o CEP ou nome da cidade. (Detalhe: ${err.message})';
+        this.errorMensage = 'Erro ao buscar o clima. Verifique o CEP ou nome da cidade.';
         console.error(err);
       }
     });

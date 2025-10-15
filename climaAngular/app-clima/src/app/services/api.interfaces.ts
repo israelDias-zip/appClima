@@ -1,6 +1,6 @@
 
 export interface CEPResponse {
-    cidade: string;     // cidade
+    localidade: string;     // cidade
     uf: string;     // estado   
 }
 

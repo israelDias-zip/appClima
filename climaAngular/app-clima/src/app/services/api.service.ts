@@ -12,10 +12,6 @@ function isValidCEP(cep: string): boolean {
 @Injectable({
   providedIn: 'root'
 })
-export class Api {
-
-}
-
 export class ApiService {
 
   constructor(private http: HttpClient) { }
@@ -36,13 +32,13 @@ export class ApiService {
   private getCityFromCEP(cep: string): Observable<string> {
     // Consulta a API do ViaCEP para obter o nome da cidade
     return this.http.get<CEPResponse>(`https://viacep.com.br/ws/${cep}/json/`).pipe(
-      map(response => response.cidade)
+      map(response => response.localidade)
     );
   }
 
   private getCoordsFromCity(city: string): Observable<GeoLocationResponse> {
     // Consulta a API de geocodificação para obter latitude e longitude
-    return this.http.get<any>(`https://geo/geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`).pipe(
+   return this.http.get<any>(`https://geocoding-api.open-meteo.com/v1/search?name=${city}&count=1`).pipe(
       map(response => {
         if (!response.results || response.results.length === 0) {
           throw new Error('Cidade não encontrada');
@@ -56,7 +52,7 @@ export class ApiService {
 
   private getWeatherFromCoords(lat: number, lon: number): Observable<WeatherResponse> {
     // Consulta a API de clima para obter o clima atual
-    const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current_weather=true`;
+   const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m`;
     return this.http.get<WeatherResponse>(url);
   }
 }
