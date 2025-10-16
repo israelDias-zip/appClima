@@ -4,13 +4,14 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { ApiService } from '../services/api.service';
 import { finalize } from 'rxjs/operators';
+import { IonIcon } from '@ionic/angular/standalone';
 
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, IonicModule, DatePipe]
+  imports: [CommonModule, FormsModule, IonicModule, DatePipe, IonIcon],
 })
 export class HomePage {
   locationInput: string = '';
