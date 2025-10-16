@@ -6,6 +6,7 @@ import { ApiService } from '../services/api.service';
 import { finalize } from 'rxjs/operators';
 import { IonIcon } from '@ionic/angular/standalone';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',

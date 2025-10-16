@@ -1,23 +1,28 @@
-<ion-header [translucent]="true"> <!--Cabeçalho da página--> 
+<ion-header [translucent]="true"> <!--Cabeçalho da página-->
   <ion-toolbar>
     <ion-title>
-      <img src="assets/iconnuvem2.png" alt="Ícone Clima" style="height: 32px; vertical-align: middle; margin-right: 8px;">
+      <img src="assets/iconnuvem2.png" alt="Ícone Clima"
+        style="height: 32px; vertical-align: middle; margin-right: 8px;">
       App Clima
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="ion-padding" > <!--Conteúdo da página-->
-  <ion-item>
-    <ion-input label="Digite o CEP ou a Cidade" labelPlacement="floating" [(ngModel)]="locationInput"
-      placeholder="Ex: 74000000 ou Goiânia" 
-      (keyup.enter)="searchWeather()"></ion-input>
-  </ion-item>
+<ion-content class="ion-padding"> <!--Conteúdo da página-->
 
-  <ion-button expand="block" (click)="searchWeather()" [disabled]="!locationInput"> <!--Botão de busca-->
-    Buscar
-    <ion-icon name="search" aria-label=""></ion-icon>
-  </ion-button>
+  <h1>Bem Vindo</h1>
+  <div>
+    <h2>Veja o Clima da sua Cidade</h2>
+
+    <ion-item>
+      <ion-input label="Digite o CEP ou a Cidade" labelPlacement="floating" [(ngModel)]="locationInput"
+        placeholder="Ex: 74000000 ou Goiânia" (keyup.enter)="searchWeather()"></ion-input>
+    </ion-item>
+
+    <ion-button expand="block" (click)="searchWeather()" [disabled]="!locationInput"> <!--Botão de busca-->
+      Buscar
+    </ion-button>
+  </div>
 
   <div *ngIf="isLoading" class="ion-text-center ion-padding"> <!--Indicador de carregamento-->
     <ion-spinner name="crescent"></ion-spinner>
@@ -28,16 +33,19 @@
     <ion-text color="danger">{{errorMensage}}</ion-text>
   </div>
 
-  <ion-card *ngIf="weatherData"> <!--Cartão para exibir os dados do clima-->
-    <ion-card-header>
-      <ion-card-title>{{displayLocation}}</ion-card-title>
-      <ion-card-subtitle>Atualizado em: {{ weatherData.current.time | date:'dd/MM/yyyy HH:mm' }}
-      </ion-card-subtitle>
-    </ion-card-header>
-    <ion-card-content>
-      <p> Temperatura: {{ weatherData.current.temperature_2m }} °C</p>
-      <p> Umidade: {{weatherData.current.relative_humidity_2m }} %</p>
-      <p> Velocidade do Vento: {{ weatherData.current.wind_speed_10m }} m/s</p>
-    </ion-card-content>
-  </ion-card>
+  <div class="area">
+    <ion-card *ngIf="weatherData"> <!--Cartão para exibir os dados do clima-->
+      <ion-card-header>
+        <ion-card-title>{{displayLocation}}</ion-card-title>
+        <ion-card-subtitle>Atualizado em: {{ weatherData.current.time | date:'dd/MM/yyyy HH:mm' }}
+        </ion-card-subtitle>
+      </ion-card-header>
+      <ion-card-content>
+        <p> Temperatura: {{ weatherData.current.temperature_2m }} °C</p>
+        <p> Umidade: {{weatherData.current.relative_humidity_2m }} %</p>
+        <p> Velocidade do Vento: {{ weatherData.current.wind_speed_10m }} m/s</p>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
 </ion-content>
