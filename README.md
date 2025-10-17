@@ -1,4 +1,4 @@
-#  App Clima (Desafio de Estágio Ionic + Angular)
+#  App Clima ( Ionic + Angular)
 
 Um aplicativo simples que permite consultar o clima atual a partir de um CEP ou nome de cidade.
 
