@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
-import { ApiService } from '../services/api.service';
+import { ApiService } from '../../services/api.service';
 import { finalize } from 'rxjs/operators';
 import { IonIcon } from '@ionic/angular/standalone';
 
