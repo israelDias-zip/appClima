@@ -16,7 +16,7 @@
 
     <ion-item>
       <ion-input label="Digite o CEP ou a Cidade" labelPlacement="floating" [(ngModel)]="locationInput"
-        placeholder="Ex: 74000000 ou Goiânia" (keyup.enter)="searchWeather()"></ion-input>
+        placeholder="Ex: 74000000 ou Goiânia" (keyup.enter)="searchWeather()" ></ion-input>
     </ion-item>
 
     <ion-button expand="block" (click)="searchWeather()" [disabled]="!locationInput"> <!--Botão de busca-->
@@ -33,19 +33,19 @@
     <ion-text color="danger">{{errorMensage}}</ion-text>
   </div>
 
-  <div class="area">
-    <ion-card *ngIf="weatherData"> <!--Cartão para exibir os dados do clima-->
+  
+    <ion-card *ngIf="weatherData" > <!--Cartão para exibir os dados do clima-->
       <ion-card-header>
-        <ion-card-title>{{displayLocation}}</ion-card-title>
+        <ion-card-title >{{displayLocation.city}}</ion-card-title> <!--Nome da cidade-->
         <ion-card-subtitle>Atualizado em: {{ weatherData.current.time | date:'dd/MM/yyyy HH:mm' }}
         </ion-card-subtitle>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content> <!--Conteúdo do cartão-->
         <p> Temperatura: {{ weatherData.current.temperature_2m }} °C</p>
         <p> Umidade: {{weatherData.current.relative_humidity_2m }} %</p>
         <p> Velocidade do Vento: {{ weatherData.current.wind_speed_10m }} m/s</p>
       </ion-card-content>
     </ion-card>
-  </div>
+ 
 
 </ion-content>

@@ -17,28 +17,38 @@ import { IonIcon } from '@ionic/angular/standalone';
 export class HomePage {
   locationInput: string = '';
   isLoading: boolean = false;
-  errorMensage: any = null;
+  errorMensage: string | null = null;
   weatherData: any = null;
-  displayLocation: string = '';
+  displayLocation: any = null;
 
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService) { }
 
-  searchWeather() {
+  searchWeather() { // Função para buscar o clima
     this.isLoading = true;
     this.errorMensage = null;
     this.weatherData = null;
-    this.displayLocation = this.locationInput;
+    this.locationInput;
 
-    this.apiService.getWeather(this.locationInput).pipe(
+    this.apiService.getWeather(this.locationInput).pipe( // Chama o serviço para obter o clima
       finalize(() => this.isLoading = false)
     ).subscribe({
       next: (data) => {
-        this.weatherData = data;
+        this.weatherData = data; // Armazena os dados do clima
+        this.apiService.getCityFromCoords(data.latitude, data.longitude).subscribe({ // Obtém o nome da cidade a partir das coordenadas
+          next: (location) => {
+            this.displayLocation = location; 
+          },
+          error: (err) => {
+            this.errorMensage = 'Erro ao obter a localização.';
+            console.error(err);
+          }
+        });
       },
       error: (err) => {
-        this.errorMensage = 'Erro ao buscar o clima. Verifique o CEP ou nome da cidade.';
+        this.errorMensage = 'Erro ao obter os dados do clima. Verifique o CEP ou nome da cidade.';
         console.error(err);
       }
     });
   }
+
 }

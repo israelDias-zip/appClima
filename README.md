@@ -9,6 +9,8 @@ Um aplicativo simples que permite consultar o clima atual a partir de um CEP ou 
 -   **Open-Meteo Geocoding**: Para converter o nome de uma cidade em coordenadas geográficas (latitude/longitude).
     
 -   **Open-Meteo Weather**: Para obter os dados climáticos a partir das coordenadas.
+
+-   **BigData Cloud ReverseGeocode**: Para obter o nome das cidades com suas coordenadas (latitude/longitude)
     
 ## Como Rodar o Projeto 
 
@@ -43,6 +45,7 @@ Um aplicativo simples que permite consultar o clima atual a partir de um CEP ou 
 -   ViaCEP: `https://viacep.com.br`
 -   Open-Meteo GeoCoding: `https://open-meteo.com/en/docs/geocoding-api`
 -   Open-Meteo Weather: `https://open-meteo.com/en/docs`
+-   BigData Cloud ReverseGeocode `https://www.bigdatacloud.com/reverse-geocoding/reverse-geocode-to-city-api`
 
 
 ## O que Poderia ser Melhorado 
@@ -52,3 +55,4 @@ Um aplicativo simples que permite consultar o clima atual a partir de um CEP ou 
 -   Adicionar mais informações sobre o clima e uma previsão do tempo para próxomos dias.
 -   Salvar a última localização pesquisada no armazenamento local para uma melhor experiência do usuário.
 -   Adicionar um plano de fundo interativo que fosse sendo alterado de acordo com a condição do clima ou código do clima (weather code).
+-   Relizar uma filtragem melhor das entradas 
